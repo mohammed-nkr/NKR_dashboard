@@ -2,6 +2,7 @@ package NKRPakage;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -29,9 +30,11 @@ public class FemaleDonationDashboard {
 		
 		WebDriver driver = new ChromeDriver();
 		
-		driver.get("https://nkr.donorscreen.fail/register/continue/226784/6CE50F7709D9CC9A");
+		driver.get("https://nkr.donorscreen.fail/register/donate/226825/B2F963AA9E6BCDE1");
 		driver.navigate().refresh();
 		driver.manage().window().maximize();
+	
+		driver.findElement(By.xpath("//a[contains(text(),'Continue')]")).click();
 		Thread.sleep(1000);
 		//Test Case_3: Screening Summary
 		driver.findElement(By.xpath("//input[@id='phoneNumber']")).sendKeys("9298996363");
@@ -40,7 +43,7 @@ public class FemaleDonationDashboard {
 		WebElement radio1 = driver.findElement(By.xpath("//label[normalize-space()='Female']//input[@id='Gender']"));
 		radio1.click();
 		//System.out.println(radio1.isSelected());
-		driver.findElement(By.xpath("//input[@name = 'BirthDate']")).sendKeys("09/15/1978");
+		driver.findElement(By.xpath("//input[@name = 'BirthDate']")).sendKeys("09/15/1972");
 		WebElement ddown1 = driver.findElement(By.xpath("//select[@name = 'HeightFeet']"));
 		Select select1 = new Select(ddown1);
 		select1.selectByIndex(2);
@@ -132,7 +135,7 @@ public class FemaleDonationDashboard {
 		WebElement drdown = driver.findElement(By.xpath("//select[@id = 'countryOfResidence']"));
 		Select select3 = new Select(drdown);
 		select3.selectByIndex(0);
-		driver.findElement(By.xpath("//input[@id='addressLine1']")).sendKeys("200-15 110 av.");
+		driver.findElement(By.xpath("//input[@id='addressLine1']")).sendKeys("205-35 112 av.");
 		driver.findElement(By.xpath("//input[@id='city']")).sendKeys("Saint Albans");
 		
 		WebElement droppdown = driver.findElement(By.xpath("//select[@id='state']"));
@@ -151,7 +154,7 @@ public class FemaleDonationDashboard {
 		Select select7 = new Select(dropppppdown);
 		select7.selectByIndex(4);
 		driver.findElement(By.xpath("//input[@id = 'EmergencyContact']")).sendKeys("Hakea"); //Emergency Contact Name
-		driver.findElement(By.xpath("//input[@id='EmergencyContactPhone']")).sendKeys("3475401230");	//Emergency Contact Number
+		driver.findElement(By.xpath("//input[@id='EmergencyContactPhone']")).sendKeys("3475401231");	//Emergency Contact Number
 		WebElement element = driver.findElement(By.xpath("//select[@id='EmergencyContactRelationship']"));	//Relationship
 		Select sel = new Select(element);
 		sel.selectByIndex(1);
@@ -364,9 +367,15 @@ public class FemaleDonationDashboard {
 		Thread.sleep(5);
 		driver.findElement(By.xpath("//a[@class='btn btn-success dash-step-btn']")).click();// Continue, Pre-Workup Labs_End
 		
+		WebElement footer = driver.findElement(By.xpath("//body/footer[1]"));//by MySchool! tutorial
+	    List<WebElement> links = footer.findElements(By.tagName("a"));
+	    links.size();
+	    int count = links.size();
+	    System.out.println("The number of links in the footer section is "+count);
+		
 		//Need to get the text,
 		//driver.close();
-		driver.quit();
+		//driver.quit();
 		
 	//File fscreenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	//Files.copy(fscreenshotFile, new File(".//screenshot/screen.png"));

@@ -1,6 +1,8 @@
 package NKRPakage;
 
 import java.util.Arrays;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,9 +20,12 @@ public class MaleDonationDashboard {
 		
 		WebDriver driver = new ChromeDriver();
 		
-		driver.get("https://nkr.donorscreen.fail/register/continue/226785/17B01BFA2347631B");
+		driver.get("https://nkr.donorscreen.fail/register/donate/226823/9AD98053E5532C43");
+		
 		driver.navigate().refresh();
 		driver.manage().window().maximize();
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//a[contains(text(),'Continue')]")).click();
 		Thread.sleep(1000);
 		//Test Case_3: Screening Summary
 		driver.findElement(By.xpath("//input[@id='phoneNumber']")).sendKeys("3474564323");
@@ -342,13 +347,18 @@ public class MaleDonationDashboard {
 		Thread.sleep(5);
 		driver.findElement(By.xpath("//a[@class='btn btn-success dash-step-btn']")).click();
 		
+		WebElement footer = driver.findElement(By.xpath("//body/footer[1]"));//by MySchool! tutorial
+	    List<WebElement> links = footer.findElements(By.tagName("a"));
+	    links.size();
+	    int count = links.size();
+	    System.out.println("The number of links in the footer section is "+count);
 		//last manual execution
 		
 		
 	//File fscreenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 	//Files.copy(fscreenshotFile, new File(".//screenshot/screen.png"));
 		//End of Friday 07/07/2003. Next start from below
-		driver.getTitle();
+		//driver.getTitle();
 		driver.close();
 }
 }
